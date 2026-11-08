@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LORD SENSI</title>
+<style>
+body{background:#0f0f0f;color:#fff;font-family:Arial;text-align:center;padding:15px}
+.card{background:#1a1a1a;max-width:400px;margin:auto;padding:20px;border-radius:15px;border:2px solid gold}
+h1{color:gold;margin:0}
+input,select{width:95%;padding:12px;margin:8px 0;border-radius:8px;border:none;font-size:16px}
+button{width:95%;padding:12px;margin:5px 0;border-radius:8px;border:none;font-weight:bold;font-size:16px;cursor:pointer}
+.b1{background:#00c853;color:#fff}.b2{background:#ff1744;color:#fff}.b3{background:gold}
+#out{background:#000;padding:15px;border-radius:10px;margin:10px 0;text-align:left;min-height:120px;white-space:pre-line}
+#count{color:gold;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🔥 LORD SENSI 🇧🇷</h1>
+<p>400+ Phones • Brazilian Headshot</p>
+<div id="count"></div>
+<input id="search" placeholder="🔍 Search phone..." oninput="filterPhones()">
+<select id="phone"></select>
+<button class="b1" onclick="showNormal()">🆓 NORMAL FREE</button>
+<button class="b2" onclick="showLock()">🇧🇷 BRAZILIAN</button>
+<div id="styleBox" style="display:none">
+<button onclick="setStyle('SPAMMER')">🔥 SPAMMER</button>
+<button onclick="setStyle('RUSHER')">⚡ RUSHER</button>
+<button onclick="setStyle('TAPER')">🎯 TAPER</button>
+<button onclick="setStyle('BEGINNER')">🛡️ BEGINNER</button>
+</div>
+<div id="lockBox" style="display:none">
+<input id="pass" placeholder="Enter Password">
+<button onclick="unlockBrazil()">UNLOCK BRAZILIAN</button>
+</div>
+<div id="out">Choose Mode</div>
+<button class="b3" onclick="copySensi()">📋 COPY SENSI</button>
+<p>Made by LORD • No Ban</p>
+</div>
+<script>
+var phones=[];
+function add(b,l){for(var i=0;i<l.length;i++)phones.push(b+" "+l[i]);}
+add("Tecno Pop",["5","6","7","7 Pro","8","9","10","10C","10 Pro","11"]);
+add("Tecno Spark",["Go 2023","Go 2024","Go 2025","8","9","10","10 Pro","20","20 Pro","30","30 Pro","40","40 Pro"]);
+add("Tecno Camon",["16","17","18","19","20","20 Pro","30","30 Pro","40","40 Pro","40 Premier"]);
+add("Tecno Pova",["2","3","4","5","5 Pro","6","6 Pro","7"]);
+add("Tecno Phantom",["X","X2","X2 Pro","V Fold","V Flip","V Fold 2","V Flip 2"]);
+add("Infinix Smart",["5","6","7","8","9"]);
+add("Infinix Hot",["10","11","12","20","30","30i","40","40 Pro","50","50i","50 Pro Plus","60 Pro"]);
+add("Infinix Note",["10","11","12","30","30 Pro","40","40 Pro","50","50 Pro"]);
+add("Infinix Zero",["20","30","40"]);
+add("Infinix GT",["10 Pro","20 Pro"]);
+add("Itel",["A50","A60","A70","P40","P55","P55 Plus","S18","S23","S24","RS4"]);
+add("Samsung Galaxy A",["04s","05","05s","10","12","13","14","15","20","21s","22","23","24","25 5G","30","31","32","33 5G","34 5G","35 5G","50","51","52","53 5G","54 5G","55 5G","70","71","72","73"]);
+add("Samsung Galaxy S",["8","9","10","20","21","21 FE","22","22 Ultra","23","23 FE","23 Ultra","24","24 Plus","24 Ultra","25","25 Ultra"]);
+add("Samsung Galaxy M",["11","12","14","21","31","34","51","55"]);
+add("Samsung Galaxy Z",["Fold 3","Fold 4","Fold 5","Fold 6","Flip 3","Flip 4","Flip 5","Flip 6"]);
+add("Samsung Galaxy Note",["10","20","20 Ultra"]);
+add("Samsung Galaxy J",["1","2","4","5","7"]);
+add("iPhone",["6","6s","7","7 Plus","8","8 Plus","X","XS","XS Max","XR","11","11 Pro","11 Pro Max","12","12 Mini","12 Pro","12 Pro Max","13","13 Mini","13 Pro","13 Pro Max","14","14 Plus","14 Pro","14 Pro Max","15","15 Plus","15 Pro","15 Pro Max","16","16 Plus","16 Pro","16 Pro Max","16e","17","17 Pro","17 Pro Max","SE 2020","SE 2022"]);
+add("Redmi Note",["8","9","10","11","12","12 Pro","13","13 Pro","13 Pro Plus"]);
+add("Redmi",["9","10","12","13C","A3","9A"]);
+add("Poco",["C65","M5","M6 Pro","X3","X4","X5 Pro","X6","X6 Pro","F3","F4","F5","F6"]);
+add("Xiaomi",["Mi 11","12","13","14","15","15 Pro"]);
+add("Realme",["C11","C21","C25","C35","C53","C55","8","9","10","11 Pro Plus","12 Pro Plus","13 Pro","13 Pro Plus","GT 6","GT Neo 3","Narzo 50","Narzo 60"]);
+add("Vivo",["Y11","Y15","Y20","Y22","Y28","Y36","Y100","V21","V23","V25","V27","V29","V30","V40","X60","X80","X90","X100"]);
+add("Oppo",["A16","A38","A58","A60","A78","Reno 6","Reno 7","Reno 8","Reno 10","Reno 11","Reno 12","Reno 13","Find X3","Find X5","Find X7","Find N3 Flip"]);
+add("OnePlus",["8","9","10 Pro","11","12","12R","Nord 2","Nord 3","Nord CE 4"]);
+add("Huawei",["Y5","Y6","Y9a","Nova 7","Nova 9","Nova 11","Nova 12","P30","P40","P50 Pro","Pura 70","Mate 40","Mate 60 Pro"]);
+add("Honor",["8X","9X","50","70","90","200","200 Pro","X8b","X9b","Magic 5","Magic 6"]);
+add("Motorola",["G10","G30","G34","G54","G84","Edge 30","Edge 40","Edge 50","Razr 40","Razr 50"]);
+add("Nokia",["105","110","C22","C32","G21","G42","X30","5.4"]);
+add("Google Pixel",["4","5","5a","6","6 Pro","6a","7","7 Pro","8","8 Pro","9","9 Pro"]);
+add("Nothing Phone",["1","2","2a","2a Plus","3"]);
+add("Sony Xperia",["1 V","1 VI","5 V","10 VI"]);
+phones.push("Asus ROG Phone 6","Asus ROG Phone 7","Asus ROG Phone 8","LG V60","LG Velvet","HTC U12","ZTE Nubia Red Magic 9 Pro","TCL 40 SE","Blackview A96","Doogee S110");
+var sel=document.getElementById("phone");
+document.getElementById("count").innerHTML="TOTAL: "+phones.length+" PHONES";
+function loadPhones(list){sel.innerHTML="";for(var i=0;i<list.length;i++){var o=document.createElement("option");o.value=list[i];o.text=list[i];sel.appendChild(o);}}
+loadPhones(phones);
+function filterPhones(){var q=document.getElementById("search").value.toLowerCase();var f=[];for(var i=0;i<phones.length;i++){if(phones[i].toLowerCase().indexOf(q)!==-1)f.push(phones[i]);}if(f.length===0)f=phones;loadPhones(f);}
+function showNormal(){var n=sel.value;var h=n.length*7%20;document.getElementById("out").innerText="MODE: NORMAL FREE\nPHONE: "+n+"\nHEADSHOT: "+(45+h)+"%\nGeneral: "+(140+h)+"\nRed Dot: "+(135+h)+"\n2x: "+(130+h)+"\n4x: "+(125+h)+"\nSniper: 115\nFree Look: "+(125+h)+"\nDPI: "+(450+h*5)+"\nFire: 60%";}
+function showLock(){document.getElementById("lockBox").style.display="block";document.getElementById("out").innerText="BRAZILIAN LOCKED";}
+function unlockBrazil(){var p=document.getElementById("pass").value;if(p.indexOf("-LORD")==-1){alert("WRONG PASSWORD!");return;}document.getElementById("lockBox").style.display="none";document.getElementById("styleBox").style.display="block";setStyle("RUSHER");}
+function setStyle(s){var n=sel.value;document.getElementById("out").innerText="UNLOCKED BRAZIL\nPHONE: "+n+"\nSTYLE: "+s+"\nHEADSHOT: 98%\nGeneral: 198\nRed Dot: 196\n2x: 191\n4x: 187\nSniper: 182\nFree Look: 192\nDPI: 970\nFire: 35%\nHOW: Rush close + drag up";}
+function copySensi(){var t=document.getElementById("out").innerText;navigator.clipboard.writeText(t).then(function(){alert("COPIED!");});}
+</script>
+</body>
+</html>
